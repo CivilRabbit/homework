@@ -6,9 +6,9 @@ class TimeOFDayTest {
 	
 	@Test
 	void test() {
-		TimeOfDay time = new TimeOfDay(0, 0);
-		assertEquals(0, time.getHours());
-		assertEquals(0, time.getMinutes());
+		TimeOfDay time = new TimeOfDay(20, 20);
+		assertEquals(20, time.getHours());
+		assertEquals(20, time.getMinutes());
 		time.setHours(15);
 		assertEquals(15, time.getHours());
 		time.setHours(23);

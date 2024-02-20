@@ -2,20 +2,20 @@
 public class TimeOfDay {
 	
 	/**
-	 * @ingvar minutes is between 0-59 and hours between 0-23
-	 * | 0 <= minutes && minutes <= 59 && 0 <= hours && hours <=23
+	 * @ingvar minutesSinceMidnight zit tussen 0 en 1440
+	 * | 0 <= minutesSinceMIdnight && minutesSinceMidnight <= 1440
 	*/
 	
-	private int minutes;
-	private int hours;
+	private int minutesSinceMidnight;
+
 	
 	
 	public int getHours() {
-		return hours;
+		return minutesSinceMidnight/60;
 	}
 	
 	public int getMinutes() {
-		return minutes;
+		return minutesSinceMidnight%60;
 	}
 	
 	
@@ -25,14 +25,13 @@ public class TimeOfDay {
 	 * | 0 <= initialMinutes && initialMinutes <= 59
 	 * @pre initialHours zit tussen 0 - 23
 	 * | 0 <= initialHours && initialHours <= 59
-	 * @post minutes is gelijk aan de nieuwe mintutes
-	 * | getMinutes() == initialHours
-	 * @post hours is gelijk aan de nieuwe hours
+	 * @post getMinutes is gelijk aan initialMinutes
+	 * | getMinutes() == initialMinutes
+	 * @post getHours is gelijk aan initialHours
 	 * | getHours() == initialHours
-	 */
-	public TimeOfDay(int initialMinutes, int initialHours) {
-		this.minutes = initialMinutes;
-		this.hours = initialHours;
+ 	 */	
+	 public TimeOfDay(int initialMinutes, int initialHours) {
+		this.minutesSinceMidnight = initialMinutes + initialHours*60;
 	}
 	
 	/**
@@ -44,7 +43,10 @@ public class TimeOfDay {
 	 */
 	
 	void setMinutes(int newMinutes) {
-		minutes = newMinutes;
+		System.out.print(newMinutes + " ");
+		System.out.print(minutesSinceMidnight/60);
+		minutesSinceMidnight = (minutesSinceMidnight - minutesSinceMidnight%60) + newMinutes;
+		
 	}
 	/**
 	 * Stelt de hours gelijk aan de nieuwe waarde
@@ -54,7 +56,7 @@ public class TimeOfDay {
 	 * | getHours() == newHours
 	 */
 	void setHours(int newHours) {
-		hours = newHours;
+		minutesSinceMidnight = minutesSinceMidnight%60 + newHours*60;
 	}
 	
 	
